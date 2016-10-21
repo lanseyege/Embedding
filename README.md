@@ -12,3 +12,6 @@ slightly modified to word2vec, what we get is embedding of word and pos
 
 pcwe(by me)  
 slightly modified to cwe, get embedding of word, pos and character
+
+##siamese
+siamese cbow implementation in C.
