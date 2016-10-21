@@ -1,3 +1,3 @@
 siamese cbow implementation.  
-<p>The original paper <<Siamese CBOW Optimizing Word Embeddings for Sentence Representations>>.<p>  
+The original paper : Tome Kenter et al. ACL 2016    
 May be need to update ...  >.<
