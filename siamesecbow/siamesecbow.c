@@ -97,11 +97,9 @@ int read_vocab() {
         for (a = 0; a < strlen(word_t); a++) {
             vocab[b * max_w + a] = word_t[a];
         }
-        //printf("%s\n", "hehe1");
         hash = get_word_hash(vocab + b * max_w);
         while (vocab_hash[hash] != -1) hash = (hash + 1) % vocab_hash_size;
         vocab_hash[hash] = b;
-        //printf("%s\n", "hehe2");
         for (c = 0; c < layer_size; c++) {
             fscanf(f, "%f", &syn0[b * layer_size + c]);
         }
@@ -159,8 +157,6 @@ int get_train() {
         printf("Input train file not found.\n");
         return -1;
     }
-    //read_word(word, f);
-    //if (feof(f)) return -1;
     tset[0].point = (int *)calloc(1, sizeof(int));
     tset[0].point[0] = 0;
     tset[0].len = 1;
@@ -204,7 +200,7 @@ void get_cbow(real *temp, int inx, int inx_) {
         for (int j=0; j<layer_size; j++) {
             temp[j + inx_ * layer_size] += syn0[tset[inx].point[i] * layer_size + j];
         } 
-    }//printf(" %d %d \n", inx, inx_);
+    }
 
     for (int i=0; i<layer_size; i++) {
         temp[i + inx_ * layer_size] /= tset[inx].len;
@@ -258,9 +254,8 @@ void *train_model_thread(void *id) {
     real *neu2 = (real *)calloc((neg_num + 2) * layer_size, sizeof(real));
     clock_t now;
     unsigned long long next_random = (long long)id;
-    id_ = (intptr_t)id; //printf("id %d \n", id_);
+    id_ = (intptr_t)id; 
     while (local_iter-- > 0) {
-        //printf("local iter %d\n", local_iter);
         a = cut[id_];
         while (a < cut[id_ + 1]){
             if (sen_count - last_sen_count > 100) {
@@ -290,8 +285,6 @@ void *train_model_thread(void *id) {
                 rand = (int)(ran * train_max_size);
                 neg[b+2] = rand; b++;
             }
-            //for( b = 0; b < neg_num+2; b++) 
-            //    printf(" b %d ", neg[b]);
             b = 0;
             while (b < neg_num + 2) {
                 get_cbow(neu2, neg[b], b);
