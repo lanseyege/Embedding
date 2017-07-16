@@ -20,3 +20,6 @@ the implementation of doc2vec
 
 ## siamese
 siamese cbow, implementation in C.
+
+## sentence-embedding
+CBOS: continues bag of sentence to get sentence representation.  
