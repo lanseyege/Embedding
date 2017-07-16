@@ -23,3 +23,6 @@ siamese cbow, implementation in C.
 
 ## sentence-embedding
 CBOS: continues bag of sentence to get sentence representation.  
+
+## glove_doc
+get document representation based Glove.  
